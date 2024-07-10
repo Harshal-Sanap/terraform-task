@@ -1,0 +1,72 @@
+data.google_iam_policy.noauth: Reading...
+data.google_iam_policy.noauth: Read complete after 0s [id=3450855414]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_cloud_run_service.simple-app will be created
+  + resource "google_cloud_run_service" "simple-app" {
+      + autogenerate_revision_name = false
+      + id                         = (known after apply)
+      + location                   = "us-central1"
+      + name                       = "hello-world-app"
+      + project                    = "my-project"
+      + status                     = (known after apply)
+
+      + template {
+          + spec {
+              + container_concurrency = (known after apply)
+              + service_account_name  = (known after apply)
+              + serving_state         = (known after apply)
+              + timeout_seconds       = (known after apply)
+
+              + containers {
+                  + image = "gcr.io/my-project/hello-world-app"
+                  + name  = (known after apply)
+                }
+            }
+        }
+
+      + traffic {
+          + latest_revision = true
+          + percent         = 100
+          + url             = (known after apply)
+        }
+    }
+
+  # google_cloud_run_service_iam_policy.noauth will be created
+  + resource "google_cloud_run_service_iam_policy" "noauth" {
+      + etag        = (known after apply)
+      + id          = (known after apply)
+      + location    = "us-central1"
+      + policy_data = jsonencode(
+            {
+              + bindings = [
+                  + {
+                      + members = [
+                          + "allUsers",
+                        ]
+                      + role    = "roles/run.invoker"
+                    },
+                ]
+            }
+        )
+      + project     = "my-project"
+      + service     = "hello-world-app"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + id       = (known after apply)
+  + location = "us-central1"
+  + name     = "hello-world-app"
+  + url      = (known after apply)
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.

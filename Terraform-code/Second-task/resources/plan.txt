@@ -1,0 +1,249 @@
+module.cloud_run_service["hello-world-1"].data.google_iam_policy.noauth: Reading...
+module.cloud_run_service["hello-world"].data.google_iam_policy.noauth: Reading...
+module.cloud_run_service["hello-world-1"].data.google_iam_policy.noauth: Read complete after 0s [id=3450855414]
+module.cloud_run_service["hello-world"].data.google_iam_policy.noauth: Read complete after 0s [id=3450855414]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.cloud_run_service["hello-world"].google_cloud_run_service.simple-app will be created
+  + resource "google_cloud_run_service" "simple-app" {
+      + autogenerate_revision_name = false
+      + id                         = (known after apply)
+      + location                   = "us-east1"
+      + name                       = "hello-world"
+      + project                    = "my-project"
+      + status                     = (known after apply)
+
+      + template {
+          + spec {
+              + container_concurrency = (known after apply)
+              + service_account_name  = (known after apply)
+              + serving_state         = (known after apply)
+              + timeout_seconds       = (known after apply)
+
+              + containers {
+                  + image = "gcr.io/your-project-id/service2:latest"
+                  + name  = (known after apply)
+                }
+            }
+        }
+
+      + traffic {
+          + latest_revision = false
+          + percent         = 50
+          + url             = (known after apply)
+        }
+    }
+
+  # module.cloud_run_service["hello-world"].google_cloud_run_service_iam_policy.noauth will be created
+  + resource "google_cloud_run_service_iam_policy" "noauth" {
+      + etag        = (known after apply)
+      + id          = (known after apply)
+      + location    = "us-east1"
+      + policy_data = jsonencode(
+            {
+              + bindings = [
+                  + {
+                      + members = [
+                          + "allUsers",
+                        ]
+                      + role    = "roles/run.invoker"
+                    },
+                ]
+            }
+        )
+      + project     = "my-project"
+      + service     = "hello-world"
+    }
+
+  # module.cloud_run_service["hello-world-1"].google_cloud_run_service.simple-app will be created
+  + resource "google_cloud_run_service" "simple-app" {
+      + autogenerate_revision_name = false
+      + id                         = (known after apply)
+      + location                   = "us-central1"
+      + name                       = "hello-world-1"
+      + project                    = "my-project"
+      + status                     = (known after apply)
+
+      + template {
+          + spec {
+              + container_concurrency = (known after apply)
+              + service_account_name  = (known after apply)
+              + serving_state         = (known after apply)
+              + timeout_seconds       = (known after apply)
+
+              + containers {
+                  + image = "gcr.io/your-project-id/service1:latest"
+                  + name  = (known after apply)
+                }
+            }
+        }
+
+      + traffic {
+          + latest_revision = true
+          + percent         = 100
+          + url             = (known after apply)
+        }
+    }
+
+  # module.cloud_run_service["hello-world-1"].google_cloud_run_service_iam_policy.noauth will be created
+  + resource "google_cloud_run_service_iam_policy" "noauth" {
+      + etag        = (known after apply)
+      + id          = (known after apply)
+      + location    = "us-central1"
+      + policy_data = jsonencode(
+            {
+              + bindings = [
+                  + {
+                      + members = [
+                          + "allUsers",
+                        ]
+                      + role    = "roles/run.invoker"
+                    },
+                ]
+            }
+        )
+      + project     = "my-project"
+      + service     = "hello-world-1"
+    }
+
+  # module.networking["harshal-network-1"].google_compute_network.network will be created
+  + resource "google_compute_network" "network" {
+      + auto_create_subnetworks                   = false
+      + delete_default_routes_on_create           = true
+      + description                               = "primary network"
+      + gateway_ipv4                              = (known after apply)
+      + id                                        = (known after apply)
+      + internal_ipv6_range                       = (known after apply)
+      + mtu                                       = 1460
+      + name                                      = "harshal-network-1"
+      + network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
+      + numeric_id                                = (known after apply)
+      + project                                   = "my-project"
+      + routing_mode                              = "GLOBAL"
+      + self_link                                 = (known after apply)
+    }
+
+  # module.networking["harshal-network-1"].google_compute_subnetwork.subnetwork will be created
+  + resource "google_compute_subnetwork" "subnetwork" {
+      + creation_timestamp         = (known after apply)
+      + external_ipv6_prefix       = (known after apply)
+      + fingerprint                = (known after apply)
+      + gateway_address            = (known after apply)
+      + id                         = (known after apply)
+      + internal_ipv6_prefix       = (known after apply)
+      + ip_cidr_range              = "10.0.0.0/24"
+      + ipv6_cidr_range            = (known after apply)
+      + name                       = "us-central-subnet-1"
+      + network                    = "harshal-network-1"
+      + private_ip_google_access   = true
+      + private_ipv6_google_access = (known after apply)
+      + project                    = "my-project"
+      + purpose                    = (known after apply)
+      + region                     = "us-central1"
+      + secondary_ip_range         = []
+      + self_link                  = (known after apply)
+      + stack_type                 = (known after apply)
+    }
+
+  # module.networking["harshal-network-2"].google_compute_network.network will be created
+  + resource "google_compute_network" "network" {
+      + auto_create_subnetworks                   = false
+      + delete_default_routes_on_create           = false
+      + description                               = "secondary network"
+      + gateway_ipv4                              = (known after apply)
+      + id                                        = (known after apply)
+      + internal_ipv6_range                       = (known after apply)
+      + mtu                                       = 1500
+      + name                                      = "harshal-network-2"
+      + network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
+      + numeric_id                                = (known after apply)
+      + project                                   = "my-project"
+      + routing_mode                              = "REGIONAL"
+      + self_link                                 = (known after apply)
+    }
+
+  # module.networking["harshal-network-2"].google_compute_subnetwork.subnetwork will be created
+  + resource "google_compute_subnetwork" "subnetwork" {
+      + creation_timestamp         = (known after apply)
+      + external_ipv6_prefix       = (known after apply)
+      + fingerprint                = (known after apply)
+      + gateway_address            = (known after apply)
+      + id                         = (known after apply)
+      + internal_ipv6_prefix       = (known after apply)
+      + ip_cidr_range              = "10.2.0.0/24"
+      + ipv6_cidr_range            = (known after apply)
+      + name                       = "us-central-subnet-1"
+      + network                    = "harshal-network-2"
+      + private_ip_google_access   = false
+      + private_ipv6_google_access = (known after apply)
+      + project                    = "my-project"
+      + purpose                    = (known after apply)
+      + region                     = "us-east1"
+      + secondary_ip_range         = []
+      + self_link                  = (known after apply)
+      + stack_type                 = (known after apply)
+    }
+
+Plan: 8 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + name         = {
+      + hello-world   = {
+          + id       = (known after apply)
+          + location = "us-east1"
+          + name     = "hello-world"
+          + url      = (known after apply)
+        }
+      + hello-world-1 = {
+          + id       = (known after apply)
+          + location = "us-central1"
+          + name     = "hello-world-1"
+          + url      = (known after apply)
+        }
+    }
+  + network_name = {
+      + harshal-network-1 = {
+          + network_id        = (known after apply)
+          + network_name      = "harshal-network-1"
+          + network_self_link = (known after apply)
+          + subnet_cidr       = "10.0.0.0/24"
+          + subnet_name       = "us-central-subnet-1"
+          + subnet_self_link  = (known after apply)
+        }
+      + harshal-network-2 = {
+          + network_id        = (known after apply)
+          + network_name      = "harshal-network-2"
+          + network_self_link = (known after apply)
+          + subnet_cidr       = "10.2.0.0/24"
+          + subnet_name       = "us-central-subnet-1"
+          + subnet_self_link  = (known after apply)
+        }
+    }
+  + subnet_name  = {
+      + harshal-network-1 = {
+          + network_id        = (known after apply)
+          + network_name      = "harshal-network-1"
+          + network_self_link = (known after apply)
+          + subnet_cidr       = "10.0.0.0/24"
+          + subnet_name       = "us-central-subnet-1"
+          + subnet_self_link  = (known after apply)
+        }
+      + harshal-network-2 = {
+          + network_id        = (known after apply)
+          + network_name      = "harshal-network-2"
+          + network_self_link = (known after apply)
+          + subnet_cidr       = "10.2.0.0/24"
+          + subnet_name       = "us-central-subnet-1"
+          + subnet_self_link  = (known after apply)
+        }
+    }
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
